@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Portfolio</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f4f7;
+        margin: 0;
+        padding: 30px;
+    }
+    .container {
+        width: 500px;
+        margin: auto;
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }
+    h2 {
+        text-align: center;
+        color: #333;
+    }
+    label {
+        display: block;
+        margin-top: 12px;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #444;
+    }
+    input, textarea, select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-sizing: border-box;
+    }
+    textarea {
+        height: 80px;
+        resize: vertical;
+    }
+    button {
+        width: 100%;
+        margin-top: 20px;
+        padding: 12px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+    .profile {
+        margin-top: 30px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+    }
+    .profile img {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 50%;
+        display: block;
+        margin: 10px auto;
+    }
+    .banner {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+    .profile p {
+        line-height: 1.6;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+<h2>My Portfolio</h2>
+<form method="POST">
+    <label>Profile URL</label>
+    <input type="text" name="profile_url" placeholder="Enter profile image URL">
+    <label>Banner URL</label>
+    <input type="text" name="banner_url" placeholder="Enter banner image URL">
+    <label>Name</label>
+    <input type="text" name="name" placeholder="Enter your name">
+    <label>Professional Headline</label>
+    <input type="text" name="headline" placeholder="e.g. Python Developer">
+    <label>Email</label>
+    <input type="email" name="email" placeholder="Enter your email">
+    <label>Location</label>
+    <input type="text" name="location" placeholder="Enter your location">
+    <label>Skills</label>
+    <input type="text" name="skills" placeholder="e.g. Python, Flask, SQL">
+    <label>Experience Level</label>
+    <select name="experience">
+        <option value="">Select experience level</option>
+        <option value="Fresher">Fresher</option>
+        <option value="Beginner">Beginner</option>
+        <option value="Intermediate">Intermediate</option>
+        <option value="Experienced">Experienced</option>
+    </select>
+    <label>Short Bio</label>
+    <textarea name="bio" placeholder="Write a short bio"></textarea>
+    <label>Join Date</label>
+    <input type="date" name="join_date">
+    <button type="submit">Submit Profile</button>
+</form>
+{% if data %}
+<div class="profile">
+    <h2>My Profile</h2>
+    {% if data['banner_url'] %}
+        <img class="banner" src="{{ data['banner_url'] }}" alt="Banner">
+    {% endif %}
+    {% if data['profile_url'] %}
+        <img src="{{ data['profile_url'] }}" alt="Profile Picture">
+    {% endif %}
+    <p><b>Name:</b> {{ data['name'] }}</p>
+    <p><b>Professional Headline:</b>
+        {{ data['headline'] }}
+    </p>
+    <p><b>Email:</b>
+        {{ data['email'] }}
+    </p>
+    <p><b>Location:</b>
+        {{ data['location'] }}
+    </p>
+    <p><b>Skills:</b>
+        {{ data['skills'] }}
+    </p>
+    <p><b>Experience Level:</b>
+        {{ data['experience'] }}
+    </p>
+    <p><b>Short Bio:</b>
+        {{ data['bio'] }}
+    </p>
+    <p><b>Join Date:</b>
+        {{ data['join_date'] }}
+    </p>
+</div>
+{% endif %}
+</div>
+</body>
+</html>
